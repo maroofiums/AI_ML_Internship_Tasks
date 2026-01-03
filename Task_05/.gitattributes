@@ -1,3 +1,0 @@
-mental_health_bot/*.bin filter=lfs diff=lfs merge=lfs -text
-mental_health_bot/*.json filter=lfs diff=lfs merge=lfs -text
-mental_health_bot/*.pt filter=lfs diff=lfs merge=lfs -text
