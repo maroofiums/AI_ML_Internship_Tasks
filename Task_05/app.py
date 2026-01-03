@@ -1,23 +1,16 @@
 import streamlit as st
+from pathlib import Path
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-MODEL_PATH = "./mental_health_bot"  
+BASE_DIR = Path(__file__).parent
+MODEL_PATH = BASE_DIR / "mental_health_bot"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-model = AutoModelForCausalLM.from_pretrained(MODEL_PATH)
-
-# Ensure pad token
-tokenizer.pad_token = tokenizer.eos_token
-model.config.pad_token_id = tokenizer.eos_token_id
+model = AutoModelForCausalLM.from_pretrained(MODEL_PATH, device_map="auto")
 
 def generate_reply(prompt, max_length=100):
-    inputs = tokenizer(prompt, return_tensors="pt")
-    output_ids = model.generate(
-        **inputs,
-        max_length=max_length,
-        do_sample=True,
-        temperature=0.7
-    )
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    output_ids = model.generate(**inputs, max_length=max_length, temperature=0.7)
     return tokenizer.decode(output_ids[0], skip_special_tokens=True)
 
 st.set_page_config(page_title="Mental Health Chatbot", page_icon="🧠")
