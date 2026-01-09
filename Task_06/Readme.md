@@ -1,3 +1,4 @@
+
 # Task 6 – House Price Prediction
 
 **Internship:** AI/ML Engineering Internship – DevelopersHub Corporation
@@ -7,91 +8,104 @@
 
 ## **Objective**
 
-Predict house prices using various property features such as:
+Predict house prices using property features such as:
 
-* Size (area in square feet)
+* Area (square footage)
 * Number of bedrooms and bathrooms
-* Parking availability, stories, and location-related features
+* Parking, stories, and location-related attributes
 
-The goal is to build a **regression model** that can accurately estimate house prices based on these features.
+The goal is to build a **regression-based ML model** that accurately estimates house prices and can be deployed as a real-world application.
 
 ---
 
 ## **Dataset**
 
 * **Source:** Kaggle – House Price Prediction Dataset
+* **Target Variable:** `price`
 * **Key Features:**
 
-  * `price` (target variable)
   * `area`, `bedrooms`, `bathrooms`, `stories`
-  * `mainroad`, `guestroom`, `basement`, `hotwaterheating`, `airconditioning`, `parking`, `prefarea`
-* Categorical features are **label-encoded** for modeling.
+  * `mainroad`, `guestroom`, `basement`
+  * `hotwaterheating`, `airconditioning`
+  * `parking`, `prefarea`
+
+Categorical features were converted into numeric form using **Label Encoding**.
 
 ---
 
-## **Steps Performed**
+## **Workflow & Implementation**
 
-1. **Data Loading & Inspection**
+### 1️⃣ Data Loading & Exploration
 
-   * Loaded dataset using **pandas**
-   * Checked shape, columns, data types, and missing values
-   * Performed initial **EDA** (scatter plots, histograms, boxplots)
+* Loaded dataset using **pandas**
+* Checked dataset shape, columns, data types, and missing values
+* Performed basic **EDA** to understand feature distributions and relationships
 
-2. **Data Preprocessing**
+### 2️⃣ Data Preprocessing
 
-   * Dropped less impactful features (`furnishingstatus`)
-   * Encoded categorical features using **LabelEncoder**
-   * Split data into **training (67%)** and **testing (33%)** sets
+* Removed less relevant column (`furnishingstatus`)
+* Encoded categorical features using `LabelEncoder`
+* Split dataset into **training (67%)** and **testing (33%)**
 
-3. **Model Training & Hyperparameter Tuning**
+### 3️⃣ Model Training & Selection
 
-   * Trained multiple regression models using **GridSearchCV**:
+Trained and compared multiple regression models using **GridSearchCV**:
 
-     * Linear Regression
-     * Ridge Regression
-     * Lasso Regression
-     * Random Forest Regressor
-     * Gradient Boosting Regressor
-   * Selected the best model based on **cross-validated R² score**
+* Linear Regression
+* Ridge Regression
+* Lasso Regression
+* Random Forest Regressor
+* Gradient Boosting Regressor
 
-4. **Model Evaluation**
+The best-performing model was selected based on **cross-validated R² score**.
 
-   * Predicted on test set
-   * Evaluated using:
+### 4️⃣ Model Evaluation
 
-     * **R² Score**
-     * **Root Mean Squared Error (RMSE)**
+* Evaluated on unseen test data
+* Metrics used:
 
-5. **Saved Artifacts**
+  * **R² Score**
+  * **RMSE (Root Mean Squared Error)**
 
-   * `best_model.pkl` – Trained regression model
-   * `label_encoders.pkl` – Label encoders for categorical features
-   * `model_columns.pkl` – Column order for deployment
+### 5️⃣ Model Saving
+
+Saved trained components for deployment:
+
+* `best_model.pkl`
+* `label_encoders.pkl`
+* `model_columns.pkl`
 
 ---
 
-## **Skills Applied**
+## **Deployment & Links**
 
-* Regression modeling (Linear, Ensemble, Gradient Boosting)
-* Feature scaling and selection
-* Model evaluation using R² and RMSE
-* Data preprocessing and categorical encoding
+🔗 **Live Streamlit App**
+👉 [https://house-price-in-pkr.streamlit.app/](https://house-price-in-pkr.streamlit.app/)
+
+🔗 **GitHub Repository**
+👉 [https://github.com/maroofiums/House-Price-Prediction](https://github.com/maroofiums/House-Price-Prediction)
+
+The application allows users to input house features and instantly receive a **predicted house price in PKR**, making it a real-world usable ML solution.
+
+---
+
+## **Skills Demonstrated**
+
+* Regression Modeling (Linear & Ensemble Methods)
+* Hyperparameter tuning with GridSearchCV
+* Feature preprocessing & encoding
+* Model evaluation (R², RMSE)
+* Model serialization for deployment
+* Streamlit-based ML app deployment
 * Real estate data understanding
 
 ---
 
 ## **Outcome**
 
-* Developed a **production-ready house price prediction model**
-* Completed an **end-to-end ML pipeline**, ready for deployment via Streamlit or FastAPI
-* Gained experience in **model comparison, hyperparameter tuning, and artifact saving**
-
----
-
-## **Future Improvements**
-
-* Include **interactive visualization dashboard** for predictions
-* Experiment with **XGBoost, CatBoost, or LightGBM** for better performance
-* Add **feature importance plots** to highlight key drivers of price
+* Built an **end-to-end machine learning pipeline**
+* Successfully deployed the model as a **live Streamlit web application**
+* Completed **Task 6** as part of DevelopersHub Corporation AI/ML Internship
+* Project is **production-ready and portfolio-worthy**
 
 ---
