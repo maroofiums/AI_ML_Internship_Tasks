@@ -1,4 +1,4 @@
-## RAG Chatbot Application🤖
+## RAG Chatbot Application
 
 ## Introduction
 This project implements a Context-Aware Retrieval-Augmented Generation (RAG) chatbot using Streamlit. The chatbot combines cutting-edge natural language processing with efficient information retrieval to deliver intelligent, context-sensitive responses. It is powered by the Mistral-7B-Instruct-v0.3 language model, a state-of-the-art AI capable of understanding and generating human-like text. The system is integrated with ChromaDB, a high-performance vector database, enabling rapid and relevant information retrieval to augment the chatbot's responses. This architecture allows the chatbot to provide more accurate, informative, and contextually appropriate answers by leveraging both its language understanding capabilities and a vast knowledge base.
@@ -19,11 +19,11 @@ To install and set up the project, follow these steps:
 
 1. Clone the repository.
     ```bash
-    git clone https://github.com/Cizore/Context_aware_Chatbot.git
+    git clone https://github.com/maroofiums/AI_ML_Internship_Tasks.git
     ```
 2. Navigate to the project directory.
     ```bash
-    cd Context_aware_Chatbot
+    cd Phase2/Task4/
     ```
 3. Install the required dependencies.
     ```bash
@@ -39,10 +39,7 @@ To install and set up the project, follow these steps:
     ```bash
     streamlit run app.py
     ```
-    ### OR
-     -deployed on streamlit:https://team-qubits.streamlit.app/
-3. Interact with the chatbot via the web interface.
-4. Upload documents using the Document Management section and process them for use within the chatbot.
+
 
 ## Features
 
