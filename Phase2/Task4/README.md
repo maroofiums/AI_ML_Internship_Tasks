@@ -1,61 +1,69 @@
-## RAG Chatbot Application
-
-## Introduction
-This project implements a Context-Aware Retrieval-Augmented Generation (RAG) chatbot using Streamlit. The chatbot combines cutting-edge natural language processing with efficient information retrieval to deliver intelligent, context-sensitive responses. It is powered by the Mistral-7B-Instruct-v0.3 language model, a state-of-the-art AI capable of understanding and generating human-like text. The system is integrated with ChromaDB, a high-performance vector database, enabling rapid and relevant information retrieval to augment the chatbot's responses. This architecture allows the chatbot to provide more accurate, informative, and contextually appropriate answers by leveraging both its language understanding capabilities and a vast knowledge base.
-
-## Hugging Face Model Token
-To obtain a token for Hugging Face, you need to create an account on their website (huggingface.co) if you haven't already. Once logged in, go to your account settings by clicking on your profile picture in the top right corner and selecting "Settings". In the settings menu, navigate to the "Access Tokens" section. Here, you can create a new token by clicking "New token", giving it a name, and selecting the appropriate permissions. After creation, you'll be shown the token - make sure to copy it immediately as it won't be displayed again for security reasons. Keep this token secure and use it in your applications to authenticate with Hugging Face's services.
-
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Dependencies](#dependencies)
-- [Configuration](#configuration)
-- [License](#license)
-
-## Installation
-To install and set up the project, follow these steps:
-
-1. Clone the repository.
-    ```bash
-    git clone https://github.com/maroofiums/AI_ML_Internship_Tasks.git
-    ```
-2. Navigate to the project directory.
-    ```bash
-    cd Phase2/Task4/
-    ```
-3. Install the required dependencies.
-    ```bash
-    pip install -r requirements.txt
-    ```
-4. Set your Hugging Face token in the `app.py` file:
-   ```python
-   HF_TOKEN = st.secrets["HF_TOKEN"]
-   ```
-
-## Usage
-1. Run the main application:
-    ```bash
-    streamlit run app.py
-    ```
 
 
-## Features
+# Task 1 – News Topic Classifier Using BERT
 
-1. **Contextual Responses**: The chatbot retrieves relevant documents from a knowledge base and uses them to provide contextual responses to user queries.
-2. **Conversational History**: The chatbot maintains a conversation history, allowing it to reference and build upon previous interactions.
-3. **Document Management**: The application provides a document management interface, allowing users to upload and store new documents in the knowledge base.
-4. **Feedback Mechanism**: Users can provide feedback on the chatbot's responses, which is used to improve the quality of future responses.
+## Objective
 
-## Dependencies
-The project relies on the following major dependencies:
-- `streamlit`
-- `huggingface_hub`
-- `langchain`
-- `chromadb`
+The goal of this task was to fine-tune a pre-trained transformer model (BERT) to classify news headlines into topic categories. This is part of **Phase 2 of the internship project**, focused on practical NLP applications and end-to-end model deployment.
 
-## Configuration
-- Store your Hugging Face token in the Streamlit secrets file as `HF_TOKEN`.
-- Additional configuration options may be found within the `app.py` file.
+## Problem Statement
 
+News headlines are often short and lack context, making topic classification a challenging NLP problem. The task required:
+
+* Handling a large text dataset (AG News) with four categories: World, Sports, Business, Science & Technology.
+* Preprocessing raw text data (title + description).
+* Building a classifier that can generalize well across different news topics.
+* Deploying the trained model for live interaction.
+
+## Approach & Solution
+
+1. **Data Collection and Preprocessing**
+
+   * Dataset used: [AG News](https://huggingface.co/datasets/ag_news).
+   * Combined `title` and `description` to form a single text input.
+   * Labels were adjusted to start from 0.
+   * Split dataset into training (90%), validation (10%), and test sets.
+
+2. **Model Selection**
+
+   * Pre-trained `bert-base-uncased` model from Hugging Face Transformers.
+   * Added a classification head for 4 output classes.
+
+3. **Training**
+
+   * Optimizer: AdamW with learning rate 5e-5.
+   * Batch size: 16, Epochs: 2.
+   * Trained on GPU if available.
+
+4. **Evaluation**
+
+   * Metrics: Accuracy and Weighted F1-score.
+   * Achieved test accuracy of ~93.7% and weighted F1-score of ~93.7%, indicating balanced performance across all classes.
+
+5. **Deployment**
+
+   * Deployed using Gradio for interactive inference.
+   * Users can input a headline and get the predicted category in real-time.
+
+6. **Saving Artifacts**
+
+   * Fine-tuned model and tokenizer saved for future inference.
+   * Label mapping stored in JSON for consistency in predictions.
+
+## Challenges
+
+* Handling a large dataset efficiently within GPU memory constraints.
+* Tokenization and batching to fit BERT’s maximum sequence length.
+* Ensuring the model generalizes well despite short and noisy headlines.
+
+## Skills Gained
+
+* Practical NLP using Transformer models (BERT).
+* Transfer learning and fine-tuning for text classification.
+* Evaluation and interpretation of classification metrics.
+* Lightweight deployment using Gradio for live model interaction.
+
+## Kaggle Notebook
+
+The complete code and workflow are available on Kaggle:
+[News Topic Classifier Using BERT](https://www.kaggle.com/code/maroofiums/news-topic-classifier-using-bert/)
